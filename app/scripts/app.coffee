@@ -34,7 +34,7 @@ angular.module('slick', [])
       onSetPosition: "&"
       pauseOnHover: "@"
       pauseOnDotsHover: "@"
-      responsive: "="
+      responsive: "@"
       rtl: "@"
       slide: "@"
       slidesToShow: "@"
@@ -123,7 +123,12 @@ angular.module('slick', [])
 
       if scope.initOnload
         isInitialized = false
-        scope.$watch("data", (newVal, oldVal) ->
+        if $.isArray($scope.data)? 
+          watcher = "data.length"
+        else
+          watcher = "data"
+
+        scope.$watch(watcher, (newVal, oldVal) ->
           if newVal?
             if isInitialized
               destroySlick()
@@ -133,3 +138,4 @@ angular.module('slick', [])
         )
       else
         initializeSlick()
+  
