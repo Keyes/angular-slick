@@ -130,6 +130,6 @@ angular.module('slick', [])
  
             initializeSlick()
             isInitialized = true
-        )
+        , true)
       else
         initializeSlick()
